@@ -33,7 +33,7 @@ function App() {
   const [showLabelFor, setShowLabelFor] = useState<null | [number, number]>(null);
   return (
     <div className="App">
-      <svg width={width} height={height} style={{ display: "flex" }}>
+      <svg width={width} height={height} style={{ display: "flex", background: "#d1f4ff" }}>
         {features.map((feature, featureIndex) => (
           <g key={`feature-${featureIndex}`}>
             {((geometry: Geometry) => {
@@ -59,7 +59,6 @@ function App() {
                               }
                             }
                           // }
-                          console.log(minX, maxX, minY, maxY);
                           const centerX = minX + (maxX - minX) / 2;
                           const centerY = minY + (maxY - minY) / 2;
                           return (
@@ -72,14 +71,14 @@ function App() {
                         <polygon
                           onPointerOver={() => setShowLabelFor([featureIndex, multiPolygonIndex])}
                           onPointerOut={() => setShowLabelFor(null)}
-                          fill={"transparent"}
-                          stroke={"black"}
+                          fill="white"
+                          stroke="black"
                           strokeWidth={1}
                           key={`polygon-${index}`}
                           points={polygon
                             .map(project)
                             .map((c) => c.join(","))
-                            .join(String.fromCharCode(32))}
+                            .join(' ')}
                         />
                       ))}
                     </g>
